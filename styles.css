@@ -1,23 +1,271 @@
-:root{
-  --accent:#2b6cb0;
-  --bg:#f7fafc;
-  --muted:#718096;
+:root {
+  --sage: #dfeecf;
+  --sage-deep: #b8d8b2;
+  --sky: #cfeaf8;
+  --sky-deep: #9ecfe6;
+  --ivory: #f9f7f2;
+  --pearl: #f3efe6;
+  --ink: #243c35;
+  --muted: #58756c;
+  --panel: rgba(255,255,255,0.5);
+  --panel-strong: rgba(255,255,255,0.7);
+  --shadow: rgba(57, 90, 80, 0.12);
 }
-*{box-sizing:border-box}
-body{font-family:system-ui,Big Caslon;margin:0;background:var(--bg);color:#1a202c}
-header{background:white;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-nav button{margin-left:8px;padding:8px 12px;border-radius:6px;border:1px solid #e2e8f0;background:transparent;cursor:pointer}
-main{padding:24px;max-width:1000px;margin:24px auto}
-.hidden{display:none}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
-.product{background:white;padding:12px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);display:flex;flex-direction:column}
-.product img{width:100%;height:140px;object-fit:cover;border-radius:6px}
-.product h4{margin:8px 0 4px;font-size:16px}
-.product p{font-size:13px;color:var(--muted);margin:0 0 8px}
-.product .row{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
-.cart-summary{margin-top:16px;display:flex;justify-content:space-between;align-items:center}
-.admin-panels{display:grid;grid-template-columns:1fr 200px 1fr;gap:16px}
-.panel{background:white;padding:12px;border-radius:8px;min-height:120px}
-form label{display:block;margin-bottom:8px}
-form input,form textarea{width:100%;padding:8px;border-radius:6px;border:1px solid #e2e8f0}
-button{background:var(--accent);color:white;border:none;padding:8px 12px;border-radius:6px;cursor:pointer}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Big Caslon", "Times New Roman", serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.75), transparent 25%),
+    radial-gradient(circle at bottom right, rgba(159, 212, 224, 0.4), transparent 25%),
+    linear-gradient(135deg, var(--ivory) 0%, var(--sage) 32%, var(--sky) 68%, #edf7f2 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto auto -10% -5%;
+  width: 120vw;
+  height: 45vh;
+  background: rgba(255,255,255,0.18);
+  border-radius: 46% 54% 50% 50% / 58% 42% 58% 42%;
+  filter: blur(8px);
+  transform: rotate(-4deg);
+  pointer-events: none;
+}
+
+body::after {
+  inset: 10% -8% auto auto;
+  width: 110vw;
+  height: 40vh;
+  background: rgba(255,255,255,0.22);
+  transform: rotate(5deg);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(249, 247, 242, 0.7);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px;
+  box-shadow: 0 6px 18px rgba(75, 104, 96, 0.08);
+  border-bottom: 1px solid rgba(86, 118, 107, 0.15);
+}
+
+header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+nav button,
+button {
+  font-family: "Big Caslon", "Times New Roman", serif;
+}
+
+nav button {
+  margin-left: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(60, 90, 80, 0.2);
+  background: rgba(255,255,255,0.5);
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+nav button:hover,
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(81, 122, 111, 0.12);
+}
+
+main {
+  padding: 40px 24px 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.view {
+  background: rgba(255,255,255,0.38);
+  border: 1px solid rgba(108, 147, 138, 0.18);
+  border-radius: 28px;
+  box-shadow: 0 12px 28px var(--shadow);
+  padding: 28px 24px;
+  margin-bottom: 22px;
+  backdrop-filter: blur(6px);
+}
+
+h2, h3, h4 {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+h2 {
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  margin-top: 0;
+}
+
+p, li {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.hidden { display: none; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+}
+
+.product {
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(237,245,239,0.78));
+  padding: 14px;
+  border-radius: 20px;
+  box-shadow: 0 10px 18px rgba(66, 94, 83, 0.08);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(118, 156, 142, 0.24);
+}
+
+.product img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(208,234,245,0.8), rgba(221,238,211,0.8));
+}
+
+.product h4 {
+  margin: 12px 0 6px;
+  font-size: 1.5rem;
+}
+
+.product p {
+  font-size: 0.98rem;
+  margin: 0 0 10px;
+}
+
+.product .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  color: var(--ink);
+  font-size: 1.05rem;
+}
+
+.cart-summary {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+}
+
+.panel {
+  background: var(--panel-strong);
+  border: 1px solid rgba(90, 122, 111, 0.18);
+  padding: 18px;
+  border-radius: 18px;
+  min-height: 120px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+form label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--ink);
+  font-size: 1.05rem;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(92, 125, 112, 0.25);
+  background: rgba(255,255,255,0.7);
+  color: var(--ink);
+  font-family: inherit;
+}
+
+button {
+  background: linear-gradient(135deg, var(--sage-deep), var(--sky-deep));
+  color: var(--ink);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button[type="submit"] {
+  margin-top: 8px;
+}
+
+#admin-revenue {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+#admin-orders,
+#admin-inventory {
+  display: grid;
+  gap: 10px;
+}
+
+@media (max-width: 640px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 18px 20px;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  nav button {
+    flex: 1 1 auto;
+    margin-left: 0;
+  }
+
+  main {
+    padding: 20px 14px 40px;
+  }
+
+  .view {
+    padding: 22px 18px;
+  }
+}
