@@ -1,0 +1,23 @@
+:root{
+  --accent:#2b6cb0;
+  --bg:#f7fafc;
+  --muted:#718096;
+}
+*{box-sizing:border-box}
+body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;background:var(--bg);color:#1a202c}
+header{background:white;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+nav button{margin-left:8px;padding:8px 12px;border-radius:6px;border:1px solid #e2e8f0;background:transparent;cursor:pointer}
+main{padding:24px;max-width:1000px;margin:24px auto}
+.hidden{display:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.product{background:white;padding:12px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);display:flex;flex-direction:column}
+.product img{width:100%;height:140px;object-fit:cover;border-radius:6px}
+.product h4{margin:8px 0 4px;font-size:16px}
+.product p{font-size:13px;color:var(--muted);margin:0 0 8px}
+.product .row{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+.cart-summary{margin-top:16px;display:flex;justify-content:space-between;align-items:center}
+.admin-panels{display:grid;grid-template-columns:1fr 200px 1fr;gap:16px}
+.panel{background:white;padding:12px;border-radius:8px;min-height:120px}
+form label{display:block;margin-bottom:8px}
+form input,form textarea{width:100%;padding:8px;border-radius:6px;border:1px solid #e2e8f0}
+button{background:var(--accent);color:white;border:none;padding:8px 12px;border-radius:6px;cursor:pointer}

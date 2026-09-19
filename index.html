@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Elite Garments - Textile Factory Outlet</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Elite Garments</h1>
+      <nav>
+        <button id="nav-about">About Us</button>
+        <button id="nav-shop">Shop</button>
+        <button id="nav-admin">Admin</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="about" class="view">
+        <h2>About Us</h2>
+        <p>
+          Elite Garments is a family-owned textile factory outlet producing high-quality
+          garments and fabrics for retailers and direct customers. We focus on
+          sustainable sourcing, rigorous quality control, and transparent pricing.
+        </p>
+        <ul>
+          <li>On-site manufacturing</li>
+          <li>Ethical labor practices</li>
+          <li>Bulk and retail sales</li>
+          <li>Custom orders available</li>
+        </ul>
+      </section>
+
+      <section id="shop" class="view hidden">
+        <h2>Shop</h2>
+        <div id="products" class="grid"></div>
+      </section>
+
+      <!-- Cart and checkout removed: shop is display-only -->
+
+      <section id="admin-login" class="view hidden">
+        <h2>Admin Login / Setup</h2>
+        <p id="admin-note">If this is the first time, set a new admin password.</p>
+        <form id="admin-form">
+          <label>Password <input name="password" type="password" required /></label>
+          <button type="submit">Enter Admin</button>
+        </form>
+      </section>
+
+      <section id="admin" class="view hidden">
+        <h2>Admin Dashboard</h2>
+        <div class="admin-panels">
+          <div class="panel">
+            <h3>Orders</h3>
+            <div id="admin-orders"></div>
+          </div>
+          <div class="panel">
+            <h3>Revenue</h3>
+            <div id="admin-revenue">$0.00</div>
+          </div>
+          <div class="panel">
+            <h3>Inventory</h3>
+            <div id="admin-inventory"></div>
+          </div>
+        </div>
+        <button id="admin-logout">Logout Admin</button>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
